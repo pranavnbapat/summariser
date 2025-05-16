@@ -14,10 +14,19 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.post("/summarise")
 async def summarise(
-    file: UploadFile = File(...),
-    mode: str = Query("concise", enum=["concise", "hierarchical"]),
-    style: str = Query("default", enum=["default", "abstract", "bullet"]),
-    use_llm: Optional[bool] = Form(True)
+        file: UploadFile = File(...),
+
+        # Summary mode:
+        # - 'concise': single compact summary for the entire document
+        # - 'hierarchical': returns separate summaries per chunk
+        mode: str = Query("concise", enum=["concise", "hierarchical"]),
+
+        # Summary style:
+        # - 'default': natural paragraph summary
+        # - 'abstract': academic-style abstract
+        # - 'bullet': key points as a list
+        style: str = Query("default", enum=["default", "abstract", "bullet"]),
+        use_llm: Optional[bool] = Form(True)
 ):
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
