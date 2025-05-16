@@ -20,16 +20,18 @@ This project provides an intelligent document summarisation service via a FastAP
 
 ## 🧩 File Structure
 
+```text
 .
-├── config.py # Environment-based config loader
-├── deploy.sh # Docker image build and push script
-├── extractor.py # File parsers for PDF, DOCX, TXT (OCR included)
-├── llm_summariser.py # RunPod + Ollama-based LLM summariser client
-├── main.py # FastAPI application
-├── preprocessor.py # Text cleaner, formula/table tagger, chunker
-├── summariser.py # Core summarisation logic
-├── .env.sample # Sample environment configuration
-├── requirements.txt # Dependencies
+├── config.py           # Environment-based config loader
+├── deploy.sh           # Docker image build and push script
+├── extractor.py        # File parsers for PDF, DOCX, TXT (OCR included)
+├── llm_summariser.py   # RunPod + Ollama-based LLM summariser client
+├── main.py             # FastAPI application
+├── preprocessor.py     # Text cleaner, formula/table tagger, chunker
+├── summariser.py       # Core summarisation logic
+├── .env.sample         # Sample environment configuration
+├── requirements.txt    # Dependencies
+```
 
 
 ---
@@ -47,7 +49,7 @@ This project provides an intelligent document summarisation service via a FastAP
 
 ```shell
 # Clone the repository
-git clone https://github.com/
+git clone https://github.com/pranavnbapat/summariser.git
 cd euf-summariser
 
 # Create a virtual environment
@@ -64,13 +66,27 @@ cp .env.sample .env
 
 ## 📡 API Usage
 
-### Run locally
+### ▶️ Run the API locally
 ```shell
 uvicorn main:app --reload
 ```
 
-Endpoint: /summarise
-POST http://localhost:8000/summarise
+### 📨 Endpoint: /summarise
+The server will start at: `http://localhost:8000`
+
+### 🔧 Query Parameters
+
+| Name  | Type   | Required | Description                               |
+| ----- | ------ | -------- | ----------------------------------------- |
+| mode  | string | ❌        | `"concise"` (default) or `"hierarchical"` |
+| style | string | ❌        | `"default"`, `"abstract"`, or `"bullet"`  |
+
+
+### 📦 Form Fields
+| Name     | Type       | Required | Description                                 |
+| -------- | ---------- | -------- | ------------------------------------------- |
+| file     | UploadFile | ✅        | PDF, DOCX, or TXT file                      |
+| use\_llm | boolean    | ❌        | Whether to use remote LLM (default: `true`) |
 
 
 ## 🧠 LLM Integration (via RunPod + Ollama)
