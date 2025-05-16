@@ -1,0 +1,19 @@
+services:
+  ollama_euf_summariser:
+    image: ollama/ollama
+    container_name: ollama_euf_summariser
+    volumes:
+      - ollama_euf_summariser_data:/root/.ollama
+      - ./ollama_startup.sh:/ollama_startup.sh
+    restart: unless-stopped
+    command: []
+    entrypoint: ["/ollama_startup.sh"]
+    networks:
+      - traefik-net
+
+volumes:
+  ollama_euf_summariser_data:
+
+networks:
+  traefik-net:
+    external: true

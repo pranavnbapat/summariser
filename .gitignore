@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+**/uploads/*
+
+# Environment and secrets (prevent secrets from going into image)
+.env
+
+# Logs, binaries, backups
+*.log
+*.bin
+*.bak
+
