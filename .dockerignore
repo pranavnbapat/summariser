@@ -16,9 +16,8 @@ __pycache__/
 **/uploads/*
 
 # Docker and Git config files (if not needed in the image)
-.dockerignore
-docker-compose.yml
-Dockerfile
+docker-compose.online.yml
+docker-compose.ollama.yml
 
 # Environment and secrets (prevent secrets from going into image)
 .env

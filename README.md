@@ -110,7 +110,7 @@ The LLM prompt is designed to elicit **natural, human-like summaries** using ava
 
 ### Build & Push (from local)
 ```shell
-./deploy.sh
+docker compose up -d
 ```
 
 ### Pull & Run (on server)
